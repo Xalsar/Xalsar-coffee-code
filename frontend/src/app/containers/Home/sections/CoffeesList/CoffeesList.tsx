@@ -3,6 +3,8 @@ import { CoffeeFilters } from "@/app/types/CoffeeFilters.type";
 
 import { CoffeeItem } from "./components/CoffeeItem";
 
+import { cn } from "@/app/utils/cn";
+
 export const CoffeesList = ({
   coffeesList,
   selectedType,
@@ -21,31 +23,28 @@ export const CoffeesList = ({
       <div className="px-[1rem] md:px-0">
         <div className="mx-auto my-[3rem] flex h-[3.12rem] w-full max-w-[34.25rem] justify-evenly rounded-[2rem] bg-[#383838] text-[1rem] text-white">
           <button
-            className={`h-full flex-1 ${
-              selectedType === CoffeeFilters.ALL
-                ? "rounded-[2rem] bg-white text-[#101011]"
-                : ""
-            }`}
+            className={cn("h-full flex-1", {
+              "rounded-[2rem] bg-white text-[#101011]":
+                selectedType === CoffeeFilters.ALL,
+            })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ALL)}
           >
             All
           </button>
           <button
-            className={`full h-full flex-1 ${
-              selectedType === CoffeeFilters.ROBUSTA
-                ? "rounded-[2rem] bg-white text-[#101011]"
-                : ""
-            }`}
+            className={cn("h-full flex-1", {
+              "rounded-[2rem] bg-white text-[#101011]":
+                selectedType === CoffeeFilters.ROBUSTA,
+            })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ROBUSTA)}
           >
             Robusta
           </button>
           <button
-            className={`h-full flex-1 ${
-              selectedType === CoffeeFilters.ARABICA
-                ? "rounded-[2rem] bg-white text-[#101011]"
-                : ""
-            }`}
+            className={cn("h-full flex-1", {
+              "rounded-[2rem] bg-white text-[#101011]":
+                selectedType === CoffeeFilters.ARABICA,
+            })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ARABICA)}
           >
             Arabica
