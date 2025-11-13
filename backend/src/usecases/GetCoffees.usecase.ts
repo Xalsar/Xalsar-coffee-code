@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CoffeeService } from 'src/services/coffe.service';
+import { CoffeeRepository } from 'src/repositories/Coffee.repository';
 
 @Injectable()
 export class GetCoffeesUseCase {
-  constructor(private coffeeService: CoffeeService) {}
-
+  constructor(private coffeeRepository: CoffeeRepository) {}
   execute() {
-    return this.coffeeService.getAllCoffees();
+    return this.coffeeRepository.getAllCoffees();
   }
 }
