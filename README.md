@@ -50,9 +50,9 @@ I used these tools because they **standardize processes**, **optimize** the app,
 
 I also used other minor tools, like Prettier plugins, to make the development process easier.
 
-# MVST Challenge
+# XCG Challenge
 
-We're thrilled that you've made it to our MVST coding challenge! We are rooting for your success and hope to meet you in the challenge review! 🚀 If you have anything that we can help you with, just open an issue in the Github repo that was provided to you.
+We're thrilled that you've made it to our XCG coding challenge! We are rooting for your success and hope to meet you in the challenge review! 🚀 If you have anything that we can help you with, just open an issue in the Github repo that was provided to you.
 
 ## How to get started
 
@@ -99,7 +99,7 @@ Before adding a new Coffee, you should validate if an existing record with the s
 ### Finishing the task
 
 1. Create a Pull Request with the coding challenge.
-2. Tell MVST HR Team that you are done with it
+2. Tell XCG HR Team that you are done with it
 3. That is it :)
 
 ### ⚠️ Rules
@@ -167,4 +167,4 @@ Please fill
 
 Thanks and have a great challenge! 🔥
 
-MVST Team
+XCG Team

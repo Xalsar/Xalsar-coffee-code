@@ -17,7 +17,7 @@ export const CoffeesList = ({
   return (
     <div className="bg-[#101011] py-[11.43rem]">
       <h2 className="text-center font-heading text-4xl font-bold text-white md:text-[3.12rem]">
-        MVST. EXCLUSIVE Coffee
+        XCG. EXCLUSIVE Coffee
       </h2>
 
       <div className="px-[1rem] md:px-0">

@@ -16,10 +16,10 @@ export const Hero = ({
       <div className="absolute z-[1] h-full w-full bg-gradient-to-t from-[#101011] via-[#101011]/50 to-[#101011]"></div>
       <div className="relative z-[2] mx-auto flex w-full max-w-[83rem] items-center justify-between px-[1.5rem] py-[1.8rem] md:px-[2rem]">
         <Image
-          src="MVST_Coffee_logo.svg"
-          alt="MVST Coffee Logo"
-          width={166.70668029785156}
-          height={24.8868465423584}
+          src="XCGcoffee.svg"
+          alt="XCG Coffee Logo"
+          width={412 / 2}
+          height={64 / 2}
         />
         <Button onClick={handleClickCreateCoffe}>Create</Button>
       </div>

@@ -1,13 +1,13 @@
 version: '3.1'
 
 services:
-  mvst-coffee-challange-database:
-    container_name: mvst-coffee-challenge-database
+  xcg-coffee-challange-database:
+    container_name: xcg-coffee-challenge-database
     image: postgres
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: 'mvst-coffee-challenge-db'
+      POSTGRES_DB: 'xcg-coffee-challenge-db'
       POSTGRES_PASSWORD: '1234'
       POSTGRES_USER: 'postgres'
     healthcheck:

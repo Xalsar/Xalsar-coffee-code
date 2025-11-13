@@ -1,4 +1,4 @@
-# Coffee and Tee List - MVST challenge Frontend
+# Coffee and Tee List - XCG challenge Frontend
 
 This is a basic Next.js application. It includes Tailwind for styling, but feel free to use a styling library of choice (or pure CSS!). However, please refrain from using a full-fledged component library like MaterialUI or Bootstrap. We want you to show us your CSS skills! 😎
 
