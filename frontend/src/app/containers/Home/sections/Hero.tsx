@@ -20,6 +20,7 @@ export const Hero = ({
           alt="XCG Coffee Logo"
           width={412 / 2}
           height={64 / 2}
+          className="max-w-[10rem] md:max-w-0"
         />
         <Button onClick={handleClickCreateCoffe}>Create</Button>
       </div>
