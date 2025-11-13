@@ -1,3 +1,5 @@
+import { cn } from "../utils/cn";
+
 export const Button = ({
   className,
   children,
@@ -13,17 +15,16 @@ export const Button = ({
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
 }) => {
-  let btnClasses = `rounded-[30px] px-[1rem] py-[0.875rem] text-white min-w-[7.1875rem] text-[0.875rem] font-body border-[1px] border-[#BA8039] disabled:opacity-50 ${className}`;
-
-  if (variant === "secondary") {
-    btnClasses += " bg-[transparent]";
-  } else {
-    btnClasses += " bg-[#BA8039]";
-  }
-
   return (
     <button
-      className={btnClasses}
+      className={cn(
+        `min-w-[7.1875rem] rounded-[30px] border-[1px] border-[#BA8039] px-[1rem] py-[0.875rem] font-body text-[0.875rem] text-white disabled:opacity-50`,
+        className,
+        {
+          "bg-[transparent]": variant === "secondary",
+          "bg-[#BA8039]": variant === "primary",
+        },
+      )}
       onClick={onClick}
       type={type}
       disabled={disabled}

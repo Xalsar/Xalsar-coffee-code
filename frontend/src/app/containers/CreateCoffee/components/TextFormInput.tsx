@@ -25,7 +25,7 @@ export const TextFormInput = ({
         {label}
       </label>
       <input
-        type={id === "price" ? "text" : "text"}
+        type={"text"}
         id={id}
         placeholder={placeholder}
         {...register(fieldName)}
