@@ -8,9 +8,9 @@ import {
   IsUrl,
   MinLength,
 } from 'class-validator';
-import { CoffeeDomain } from 'src/domains/Coffee.domain';
 
-import { CoffeeType } from 'src/types/CoffeeType.type';
+import { CoffeeType } from 'src/modules/coffee/domains/Coffee.domain';
+import { CreateCoffeeInput } from 'src/modules/coffee/app/interfaces/create-coffee-input.interface';
 
 export class CreateCoffeeDto {
   @IsNotEmpty()
@@ -42,13 +42,13 @@ export class CreateCoffeeDto {
   @IsString()
   description: string;
 
-  static toDomain(dto: CreateCoffeeDto) {
-    return new CoffeeDomain({
+  static toInput(dto: CreateCoffeeDto): CreateCoffeeInput {
+    return {
       name: dto.name,
       type: dto.type,
       imageUrl: dto.imageUrl,
       description: dto.description,
       price: dto.price,
-    });
+    } satisfies CreateCoffeeInput;
   }
 }

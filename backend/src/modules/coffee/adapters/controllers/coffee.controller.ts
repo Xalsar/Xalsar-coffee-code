@@ -1,12 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-
-import { GetCoffeesUseCase } from './usecases/GetCoffees.usecase';
-import { CreateCoffeeUseCase } from './usecases/CreateCoffee.usecase';
-
+import { GetCoffeesUseCase } from '../../app/usecases/get-coffees.usecase';
+import { CreateCoffeeUseCase } from '../../app/usecases/create-coffee.usecase';
 import { CreateCoffeeDto } from './dtos/CreateCoffe.input.dto';
 
-@Controller()
-export class AppController {
+@Controller('coffees')
+export class CoffeeController {
   constructor(
     private getCoffeesUseCase: GetCoffeesUseCase,
     private createCoffeeUseCase: CreateCoffeeUseCase,
@@ -19,6 +17,8 @@ export class AppController {
 
   @Post()
   async createCoffee(@Body() createCoffeeDto: CreateCoffeeDto) {
-    return this.createCoffeeUseCase.execute(createCoffeeDto);
+    return this.createCoffeeUseCase.execute(
+      CreateCoffeeDto.toInput(createCoffeeDto),
+    );
   }
 }
