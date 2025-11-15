@@ -11,6 +11,7 @@ const coffeeData = [
     price: 3.5,
     description:
       'A rich, concentrated shot of premium Arabica beans, forming the base of many drinks.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Bold Sumatra',
@@ -18,6 +19,7 @@ const coffeeData = [
     price: 4.0,
     description:
       'Intense and earthy Robusta with a strong, dark finish and high caffeine content.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Ethiopian Yirgacheffe',
@@ -25,6 +27,7 @@ const coffeeData = [
     price: 5.5,
     description:
       'Floral, fruity, and complex, a highly-regarded single-origin Arabica.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Vietnamese Dark Roast',
@@ -32,6 +35,7 @@ const coffeeData = [
     price: 3.8,
     description:
       'A traditional dark roast Robusta, often used for Vietnamese iced coffee.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Colombian Supremo',
@@ -39,6 +43,7 @@ const coffeeData = [
     price: 4.5,
     description:
       'A smooth, well-balanced, and bright Arabica with a medium body.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Indian Cherry',
@@ -46,6 +51,7 @@ const coffeeData = [
     price: 3.2,
     description:
       'A robust and mildly acidic Robusta, often used in blending for body.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Kenya AA',
@@ -53,6 +59,7 @@ const coffeeData = [
     price: 6.0,
     description:
       'Known for its vibrant, clean, and complex acidity with notes of blackcurrant.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Ugandan Wugar',
@@ -60,6 +67,7 @@ const coffeeData = [
     price: 3.7,
     description:
       'A neutral, full-bodied Robusta that works well in espresso blends.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
   {
     name: 'Guatemalan Antigua',
@@ -67,6 +75,7 @@ const coffeeData = [
     price: 5.0,
     description:
       'Smoky, spicy, and full-bodied Arabica, grown at high altitudes.',
+    imageUrl: 'https://example.com/classic-espresso.jpg',
   },
 ];
 

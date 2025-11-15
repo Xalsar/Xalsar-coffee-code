@@ -8,6 +8,7 @@ import {
   IsUrl,
   MinLength,
 } from 'class-validator';
+import { CoffeeDomain } from 'src/domains/Coffee.domain';
 
 import { CoffeeType } from 'src/types/CoffeeType.type';
 
@@ -40,4 +41,14 @@ export class CreateCoffeeDto {
   @IsNotEmpty()
   @IsString()
   description: string;
+
+  static toDomain(dto: CreateCoffeeDto) {
+    return new CoffeeDomain({
+      name: dto.name,
+      type: dto.type,
+      imageUrl: dto.imageUrl,
+      description: dto.description,
+      price: dto.price,
+    });
+  }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/services/prisma.service';
 
 import { Coffee } from 'generated/prisma/client';
+import { CoffeeDomain } from 'src/domains/Coffee.domain';
 
 @Injectable()
 export class CoffeeRepository {
@@ -23,20 +24,25 @@ export class CoffeeRepository {
     name,
     type,
     description,
+    imageUrl,
     price,
-  }: {
-    name: string;
-    type: 'ARABICA' | 'ROBUSTA';
-    description?: string;
-    price: number;
-  }): Promise<Coffee> {
-    return this.prisma.coffee.create({
+  }: CoffeeDomain): Promise<CoffeeDomain> {
+    const createdCoffee = await this.prisma.coffee.create({
       data: {
         name,
         type,
         description,
+        imageUrl,
         price,
       },
+    });
+
+    return new CoffeeDomain({
+      name: createdCoffee.name,
+      type: createdCoffee.type,
+      imageUrl: createdCoffee.imageUrl,
+      description: createdCoffee.description,
+      price: createdCoffee.price,
     });
   }
 }
