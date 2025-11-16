@@ -24,7 +24,7 @@ export const useCreateCoffeeForm = ({
   handleClickClose: () => void;
 }) => {
   const { trigger: createCoffee } = useSWRMutation(
-    `${process.env.NEXT_PUBLIC_API_URL}/`,
+    `${process.env.NEXT_PUBLIC_API_URL}/coffees`,
     async (url, { arg }: { arg: SubmitArg }) => {
       const response = await axios.post(url, arg);
       return response.data;
