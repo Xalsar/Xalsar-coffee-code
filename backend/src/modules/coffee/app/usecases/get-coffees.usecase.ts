@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CoffeeRepository } from 'src/modules/coffee/adapters/repositories/coffee.repository';
-import { CoffeeDomain } from '../../domains/Coffee.domain';
+import { CoffeeDomain } from '../domains/Coffee.domain';
 
 @Injectable()
 export class GetCoffeesUseCase {

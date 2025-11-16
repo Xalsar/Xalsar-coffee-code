@@ -9,7 +9,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-import { CoffeeType } from 'src/modules/coffee/domains/Coffee.domain';
+import { CoffeeType } from 'src/modules/coffee/app/domains/Coffee.domain';
 import { CreateCoffeeInput } from 'src/modules/coffee/app/interfaces/create-coffee-input.interface';
 
 export class CreateCoffeeDto {

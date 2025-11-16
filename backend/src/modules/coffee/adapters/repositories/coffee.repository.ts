@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/services/prisma.service';
 
-import { CoffeeDomain } from 'src/modules/coffee/domains/Coffee.domain';
+import { CoffeeDomain } from 'src/modules/coffee/app/domains/Coffee.domain';
 
 @Injectable()
 export class CoffeeRepository {

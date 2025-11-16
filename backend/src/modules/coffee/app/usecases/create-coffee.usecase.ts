@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CoffeeAlreadyExistsException } from 'src/modules/coffee/app/usecases/exceptions/CoffeAlreadyExists.error';
 import { CoffeeRepository } from 'src/modules/coffee/adapters/repositories/coffee.repository';
 
-import { CoffeeType } from 'src/modules/coffee/domains/Coffee.domain';
 import { CreateCoffeeInput } from '../interfaces/create-coffee-input.interface';
 
 @Injectable()
