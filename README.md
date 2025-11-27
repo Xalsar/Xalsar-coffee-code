@@ -7,22 +7,20 @@ Responsive site built with Next.js, Tailwind CSS, NestJS, Prisma, and PostgreSQL
 <img width="1912" height="1015" alt="image" src="https://github.com/user-attachments/assets/944ec9cc-9ded-4668-81e9-e3f68b8fbeb0" />
 <img width="2031" height="1143" alt="image" src="https://github.com/user-attachments/assets/d406d222-00a7-41b4-8d5f-16fde535fb58" />
 
-
-
 ## How to Run This Project
 
 Create the **.env** files for each project. You can duplicate the **.example.env** files and rename them to **.env**.
 
 In the **backend** run:
 
-- `yarn install`
-- `yarn prisma dev` (\# Keep this running)
-- `yarn build`
-- `yarn start` (\# Keep this running)
-- `yarn db:seed`
+- `pnpm install`
+- `docker compose up` (\# Keep this running)
+- `pnpm build`
+- `pnpm start` (\# Keep this running)
+- `pnpm db:seed`
 
 In the **frontend** run:
 
-- `yarn install`
-- `yarn build`
-- `yarn start` (\# Keep this running)
+- `pnpm install`
+- `pnpm build`
+- `pnpm start` (\# Keep this running)
