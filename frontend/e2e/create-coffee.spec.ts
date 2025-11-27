@@ -1,30 +1,30 @@
 import { test, expect, Page } from "@playwright/test";
 
+// Helper function to generate unique coffee name
+const getUniqueCoffeeName = () => `Playwright Coffee ${Date.now()}`;
+
+// Helper function to open create coffee modal from header
+const openCreateCoffeeModal = async (page: Page) => {
+  const createButtonHeader = page.getByTestId("create-coffee-button-header");
+  await createButtonHeader.click();
+  const createCoffeeModal = page.getByTestId("create-coffee-modal");
+  await expect(createCoffeeModal).toBeVisible();
+};
+
+// Helper function to fill form with valid data
+const fillCoffeeForm = async (page: Page, coffeeName: string) => {
+  await page.getByTestId("coffee-name-input").fill(coffeeName);
+  await page.getByTestId("coffee-price-input").fill("9.99");
+  await page.getByTestId("coffee-type-arabica-label").click();
+  await page
+    .getByTestId("coffee-image-url-input")
+    .fill("https://example.com/image.jpg");
+  await page
+    .getByTestId("coffee-description-input")
+    .fill("This is a test description for the coffee.");
+};
+
 test.describe("Create Coffee", () => {
-  // Helper function to generate unique coffee name
-  const getUniqueCoffeeName = () => `Playwright Coffee ${Date.now()}`;
-
-  // Helper function to open create coffee modal from header
-  const openCreateCoffeeModal = async (page: Page) => {
-    const createButtonHeader = page.getByTestId("create-coffee-button-header");
-    await createButtonHeader.click();
-    const createCoffeeModal = page.getByTestId("create-coffee-modal");
-    await expect(createCoffeeModal).toBeVisible();
-  };
-
-  // Helper function to fill form with valid data
-  const fillCoffeeForm = async (page: Page, coffeeName: string) => {
-    await page.getByTestId("coffee-name-input").fill(coffeeName);
-    await page.getByTestId("coffee-price-input").fill("9.99");
-    await page.getByTestId("coffee-type-arabica-label").click();
-    await page
-      .getByTestId("coffee-image-url-input")
-      .fill("https://example.com/image.jpg");
-    await page
-      .getByTestId("coffee-description-input")
-      .fill("This is a test description for the coffee.");
-  };
-
   test.describe("Modal navigation", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/");

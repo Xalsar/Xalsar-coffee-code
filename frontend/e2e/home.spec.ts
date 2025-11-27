@@ -23,6 +23,9 @@ async function getCoffeeCountByType(page: Page, type: string) {
   const coffeeItems = await page.locator(
     `[data-testid="coffee-item"][data-coffee-type="${type}"]`,
   );
+
+  await page.waitForLoadState("networkidle");
+
   return await coffeeItems.count();
 }
 
