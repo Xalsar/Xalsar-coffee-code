@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  coffes-database:
-    container_name: coffes-database
+  coffees-database:
+    container_name: coffees-database
     image: postgres:13.5
     restart: always
     environment:
@@ -9,9 +9,9 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=mydb
     volumes:
-      - coffes-database:/var/lib/postgresql/data
+      - coffees-database:/var/lib/postgresql/data
     ports:
       - '5432:5432'
 
 volumes:
-  coffes-database:
+  coffees-database:
