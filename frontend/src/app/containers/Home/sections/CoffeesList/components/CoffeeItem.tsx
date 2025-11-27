@@ -18,6 +18,7 @@ export const CoffeeItem = ({
     <div
       className="relative min-h-[31.25rem] w-full rounded-[0.37rem] bg-[#191919] px-[3.12rem] py-[2.37rem] text-center text-white shadow-md md:max-w-[24.37rem]"
       data-testid="coffee-item"
+      data-coffee-type={type}
     >
       <CoffeeTypePill type={type} />
       <Image

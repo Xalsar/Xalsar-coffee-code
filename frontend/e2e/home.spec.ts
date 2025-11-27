@@ -3,9 +3,9 @@ import { test, expect, Page } from "@playwright/test";
 // Constants
 const COFFEE_TYPES = {
   ALL: "All",
-  ROBUSTA: "Robusta",
-  ARABICA: "Arabica",
-} as const;
+  ROBUSTA: "ROBUSTA",
+  ARABICA: "ARABICA",
+};
 
 const MIN_EXPECTED_COFFEES = 9;
 
@@ -15,8 +15,10 @@ async function getCoffeeItems(page: Page) {
 }
 
 async function getCoffeeCountByType(page: Page, type: string) {
-  const coffeeItems = await getCoffeeItems(page);
-  return await coffeeItems.filter({ hasText: type }).count();
+  const coffeeItems = await page.locator(
+    `[data-testid="coffee-item"][data-coffee-type="${type}"]`,
+  );
+  return await coffeeItems.count();
 }
 
 async function getTotalCoffeeCount(page: Page) {
