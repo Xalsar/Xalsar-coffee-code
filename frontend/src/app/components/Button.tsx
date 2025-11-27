@@ -7,6 +7,7 @@ export const Button = ({
   onClick,
   type = "button",
   disabled,
+  "data-testid": dataTestId,
 }: {
   className?: string;
   children: string;
@@ -14,6 +15,7 @@ export const Button = ({
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  "data-testid"?: string;
 }) => {
   return (
     <button
@@ -28,6 +30,7 @@ export const Button = ({
       onClick={onClick}
       type={type}
       disabled={disabled}
+      data-testid={dataTestId}
     >
       {children}
     </button>

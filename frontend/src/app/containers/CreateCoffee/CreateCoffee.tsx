@@ -18,10 +18,14 @@ export const CreateCoffee = ({
   } = useCreateCoffeeForm({ handleClickClose });
 
   return (
-    <div className="w-full overflow-hidden pb-[10.0625rem] pt-[5.6875rem] font-body text-white md:absolute md:left-1/2 md:top-1/2 md:max-w-[44.625rem] md:-translate-x-1/2 md:-translate-y-1/2 md:bg-[#191919] md:p-[8.5rem] ">
+    <div
+      className="w-full overflow-hidden pb-[10.0625rem] pt-[5.6875rem] font-body text-white md:absolute md:left-1/2 md:top-1/2 md:max-w-[44.625rem] md:-translate-x-1/2 md:-translate-y-1/2 md:bg-[#191919] md:p-[8.5rem]"
+      data-testid="create-coffee-modal"
+    >
       <button
         className="absolute right-[2.5rem] top-[2.5rem]"
         onClick={handleClickClose}
+        data-testid="close-create-coffee-modal-button"
       >
         <Image src="/x.svg" alt="Close" width={40} height={40} />
       </button>

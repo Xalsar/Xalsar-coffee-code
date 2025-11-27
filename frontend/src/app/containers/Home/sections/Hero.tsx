@@ -22,7 +22,12 @@ export const Hero = ({
           height={64 / 2}
           className="max-w-[10rem] md:max-w-none"
         />
-        <Button onClick={handleClickCreateCoffe}>Create</Button>
+        <Button
+          onClick={handleClickCreateCoffe}
+          data-testid="create-coffee-button-header"
+        >
+          Create
+        </Button>
       </div>
       <div className="absolute left-1/2 top-1/2 z-[2] w-full max-w-[17rem] -translate-x-1/2 -translate-y-1/2 text-white md:max-w-[85rem] md:px-[2rem]">
         <h1 className="font-heading text-7xl font-bold leading-[8.1rem] md:text-[8.1rem]">
@@ -31,7 +36,11 @@ export const Hero = ({
         <p className="text-[1.25rem] leading-[1.87rem] text-[#938E8E]">
           Choose a coffe from below or create your own.
         </p>
-        <Button onClick={handleClickCreateCoffe} className="mt-5 w-[14.62rem]">
+        <Button
+          onClick={handleClickCreateCoffe}
+          className="mt-5 w-[14.62rem]"
+          data-testid="create-coffee-button-hero"
+        >
           Create your own coffee
         </Button>
       </div>
