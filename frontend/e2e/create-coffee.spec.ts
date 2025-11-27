@@ -1,9 +1,30 @@
 import { test, expect, Page } from "@playwright/test";
-import { it } from "node:test";
-
-let nowString = "";
 
 test.describe("Create Coffee", () => {
+  // Helper function to generate unique coffee name
+  const getUniqueCoffeeName = () => `Playwright Coffee ${Date.now()}`;
+
+  // Helper function to open create coffee modal from header
+  const openCreateCoffeeModal = async (page: Page) => {
+    const createButtonHeader = page.getByTestId("create-coffee-button-header");
+    await createButtonHeader.click();
+    const createCoffeeModal = page.getByTestId("create-coffee-modal");
+    await expect(createCoffeeModal).toBeVisible();
+  };
+
+  // Helper function to fill form with valid data
+  const fillCoffeeForm = async (page: Page, coffeeName: string) => {
+    await page.getByTestId("coffee-name-input").fill(coffeeName);
+    await page.getByTestId("coffee-price-input").fill("9.99");
+    await page.getByTestId("coffee-type-arabica-label").click();
+    await page
+      .getByTestId("coffee-image-url-input")
+      .fill("https://example.com/image.jpg");
+    await page
+      .getByTestId("coffee-description-input")
+      .fill("This is a test description for the coffee.");
+  };
+
   test.describe("Modal navigation", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/");
@@ -34,14 +55,9 @@ test.describe("Create Coffee", () => {
     test("should close the create coffee modal when clicking the close button", async ({
       page,
     }) => {
-      const createButtonHeader = page.getByTestId(
-        "create-coffee-button-header",
-      );
-      await createButtonHeader.click();
+      await openCreateCoffeeModal(page);
 
       const createCoffeeModal = page.getByTestId("create-coffee-modal");
-      await expect(createCoffeeModal).toBeVisible();
-
       const closeButton = page.getByTestId("close-create-coffee-modal-button");
       await closeButton.click();
 
@@ -52,33 +68,24 @@ test.describe("Create Coffee", () => {
   test.describe("Form submission", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/");
-
-      const createButtonHeader = page.getByTestId(
-        "create-coffee-button-header",
-      );
-      await createButtonHeader.click();
+      await openCreateCoffeeModal(page);
     });
 
     test("should display all the form fields", async ({ page }) => {
-      const nameInput = page.getByTestId("coffee-name-input");
-      const priceInput = page.getByTestId("coffee-price-input");
-      const typeArabicaRadioLabel = page.getByTestId(
-        "coffee-type-arabica-label",
-      );
-      const typeRobustaRadioLabel = page.getByTestId(
-        "coffee-type-robusta-label",
-      );
-      const imageUrlInput = page.getByTestId("coffee-image-url-input");
-      const descriptionInput = page.getByTestId("coffee-description-input");
-      const submitButton = page.getByTestId("confirm-coffee-creation");
+      const formFields = [
+        { testId: "coffee-name-input", label: "Name input" },
+        { testId: "coffee-price-input", label: "Price input" },
+        { testId: "coffee-type-arabica-label", label: "Arabica radio" },
+        { testId: "coffee-type-robusta-label", label: "Robusta radio" },
+        { testId: "coffee-image-url-input", label: "Image URL input" },
+        { testId: "coffee-description-input", label: "Description input" },
+        { testId: "confirm-coffee-creation", label: "Submit button" },
+      ];
 
-      await expect(nameInput).toBeVisible();
-      await expect(priceInput).toBeVisible();
-      await expect(typeArabicaRadioLabel).toBeVisible();
-      await expect(typeRobustaRadioLabel).toBeVisible();
-      await expect(imageUrlInput).toBeVisible();
-      await expect(descriptionInput).toBeVisible();
-      await expect(submitButton).toBeVisible();
+      for (const field of formFields) {
+        const element = page.getByTestId(field.testId);
+        await expect(element).toBeVisible();
+      }
     });
 
     test("should display validation errors when submitting empty form", async ({
@@ -87,110 +94,101 @@ test.describe("Create Coffee", () => {
       const submitButton = page.getByTestId("confirm-coffee-creation");
       await submitButton.click();
 
-      const nameError = page.getByText(
+      const expectedErrors = [
         "Coffee Name must be at least 3 characters.",
-      );
-      const priceError = page.getByText("Price is required.");
-      const typeError = page.getByText("Please select a coffee type.");
-      const uploadImageUrlError = page.getByText("Must be a valid URL.");
-      const descriptionError = page.getByText(
+        "Price is required.",
+        "Please select a coffee type.",
+        "Must be a valid URL.",
         "Description must be at least 10 characters.",
-      );
+      ];
 
-      await expect(nameError).toBeVisible();
-      await expect(priceError).toBeVisible();
-      await expect(typeError).toBeVisible();
-      await expect(uploadImageUrlError).toBeVisible();
-      await expect(descriptionError).toBeVisible();
+      for (const errorMessage of expectedErrors) {
+        await expect(page.getByText(errorMessage)).toBeVisible();
+      }
+    });
+  });
+
+  test.describe("Form submission with valid data", () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto("/");
+      await openCreateCoffeeModal(page);
     });
 
-    test.describe("form submission with valid data", () => {
-      test.beforeEach(async ({ page }) => {
-        const now = new Date();
-        nowString = now.toISOString();
+    test("should submit the form successfully and close the modal", async ({
+      page,
+    }) => {
+      const coffeeName = getUniqueCoffeeName();
+      await fillCoffeeForm(page, coffeeName);
 
-        await page
-          .getByTestId("coffee-name-input")
-          .fill(`Playwright Coffee ${nowString}`); // Modified to ensure uniqueness
-        await page.getByTestId("coffee-price-input").fill("9.99");
-        await page.getByTestId("coffee-type-arabica-label").click();
-        await page
-          .getByTestId("coffee-image-url-input")
-          .fill("https://example.com/image.jpg");
-        await page
-          .getByTestId("coffee-description-input")
-          .fill("This is a test description for the coffee.");
+      const submitButton = page.getByTestId("confirm-coffee-creation");
+      await submitButton.click();
 
-        const submitButton = page.getByTestId("confirm-coffee-creation");
-        await submitButton.click();
+      const createCoffeeModal = page.getByTestId("create-coffee-modal");
+      await expect(createCoffeeModal).toBeHidden();
+    });
+
+    test("should display the newly created coffee in the coffee list", async ({
+      page,
+    }) => {
+      const coffeeName = getUniqueCoffeeName();
+      await fillCoffeeForm(page, coffeeName);
+
+      const submitButton = page.getByTestId("confirm-coffee-creation");
+      await submitButton.click();
+
+      // Wait for modal to close and content to load
+      const createCoffeeModal = page.getByTestId("create-coffee-modal");
+      await expect(createCoffeeModal).toBeHidden();
+
+      // Verify the coffee item is visible in the list
+      const coffeeItem = page.getByTestId("coffee-item").filter({
+        hasText: coffeeName,
       });
-
-      test("should submit the form successfully and close the modal", async ({
-        page,
-      }) => {
-        const createCoffeeModal = page.getByTestId("create-coffee-modal");
-        await expect(createCoffeeModal).toBeHidden();
-      });
-
-      test("should hide the modal after submission", async ({ page }) => {
-        const createCoffeeModal = page.getByTestId("create-coffee-modal");
-        await expect(createCoffeeModal).toBeHidden();
-      });
-
-      test("should display the newly created coffee in the coffee list", async ({
-        page,
-      }) => {
-        const coffeItem = page.getByTestId("coffee-item").filter({
-          hasText: `Playwright Coffee ${nowString}`,
-        });
-        await expect(coffeItem).toBeVisible();
-        await expect(coffeItem).toHaveText(/9.99/);
-        await expect(coffeItem).toContainText("Arabica");
-        await expect(coffeItem).toContainText(
-          "This is a test description for the coffee.",
-        );
-      });
+      await expect(coffeeItem).toBeVisible();
+      await expect(coffeeItem).toContainText("9.99");
+      await expect(coffeeItem).toContainText("Arabica");
+      await expect(coffeeItem).toContainText(
+        "This is a test description for the coffee.",
+      );
     });
   });
 
   test.describe("Discard functionality", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/");
-
-      const createButtonHeader = page.getByTestId(
-        "create-coffee-button-header",
-      );
-      await createButtonHeader.click();
-
-      const now = new Date();
-      nowString = now.toISOString();
-
-      await page
-        .getByTestId("coffee-name-input")
-        .fill(`Playwright Coffee ${nowString}`); // Modified to ensure uniqueness
-      await page.getByTestId("coffee-price-input").fill("9.99");
-      await page.getByTestId("coffee-type-arabica-label").click();
-      await page
-        .getByTestId("coffee-image-url-input")
-        .fill("https://example.com/image.jpg");
-      await page
-        .getByTestId("coffee-description-input")
-        .fill("This is a test description for the coffee.");
+      await openCreateCoffeeModal(page);
     });
 
-    test("should discard the form data", async ({ page }) => {
+    test("should discard the form data and clear all fields", async ({
+      page,
+    }) => {
+      const coffeeName = getUniqueCoffeeName();
+      await fillCoffeeForm(page, coffeeName);
+
       const discardButton = page.getByTestId("coffee-create-form-discard");
       await discardButton.click();
 
-      const nameInput = page.getByTestId("coffee-name-input");
-      const priceInput = page.getByTestId("coffee-price-input");
-      const imageUrlInput = page.getByTestId("coffee-image-url-input");
-      const descriptionInput = page.getByTestId("coffee-description-input");
+      const formFields = [
+        "coffee-name-input",
+        "coffee-price-input",
+        "coffee-image-url-input",
+        "coffee-description-input",
+      ];
 
-      await expect(nameInput).toHaveValue("");
-      await expect(priceInput).toHaveValue("");
-      await expect(imageUrlInput).toHaveValue("");
-      await expect(descriptionInput).toHaveValue("");
+      for (const fieldTestId of formFields) {
+        await expect(page.getByTestId(fieldTestId)).toHaveValue("");
+      }
+    });
+
+    test("should keep the modal open after discarding", async ({ page }) => {
+      const coffeeName = getUniqueCoffeeName();
+      await fillCoffeeForm(page, coffeeName);
+
+      const discardButton = page.getByTestId("coffee-create-form-discard");
+      await discardButton.click();
+
+      const createCoffeeModal = page.getByTestId("create-coffee-modal");
+      await expect(createCoffeeModal).toBeVisible();
     });
   });
 });
