@@ -2,11 +2,13 @@ import { test, expect, Page } from "@playwright/test";
 
 test.describe("Create Coffee", () => {
   test.describe("Modal navigation", () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto("/");
+    });
+
     test("should open the create coffee modal when clicking the 'Create' button in the header", async ({
       page,
     }) => {
-      await page.goto("/");
-
       const createButtonHeader = page.getByTestId(
         "create-coffee-button-header",
       );
@@ -19,8 +21,6 @@ test.describe("Create Coffee", () => {
     test("should open the create coffee modal when clicking the 'Create your own coffee' button in the hero section", async ({
       page,
     }) => {
-      await page.goto("/");
-
       const createButtonHero = page.getByTestId("create-coffee-button-hero");
       await createButtonHero.click();
 
@@ -31,8 +31,6 @@ test.describe("Create Coffee", () => {
     test("should close the create coffee modal when clicking the close button", async ({
       page,
     }) => {
-      await page.goto("/");
-
       const createButtonHeader = page.getByTestId(
         "create-coffee-button-header",
       );
