@@ -51,6 +51,7 @@ export const CreateCoffee = ({
                 fieldName="name"
                 register={register}
                 error={errors.name?.message}
+                data-testid="coffee-name-input"
               />
             </div>
             <div className="flex-[1]">
@@ -62,6 +63,7 @@ export const CreateCoffee = ({
                   fieldName="price"
                   register={register}
                   error={errors.price?.message}
+                  data-testid="coffee-price-input"
                 />
                 <span className="absolute right-4 top-[2.28125rem]">€</span>
               </div>
@@ -81,10 +83,12 @@ export const CreateCoffee = ({
                   value="ARABICA"
                   className="peer hidden"
                   {...register("coffeeType")}
+                  data-testid="coffee-type-arabica-input"
                 />
                 <label
                   htmlFor="coffee-arabica"
                   className="block flex-[1] rounded-[0.5rem] border-[1px] border-[#2D2D2D] p-[0.5rem] text-center text-[#838382] transition peer-checked:border-[#FFFFFF] peer-checked:text-[#FFFFFF] "
+                  data-testid="coffee-type-arabica-label"
                 >
                   Arabica
                 </label>
@@ -96,10 +100,12 @@ export const CreateCoffee = ({
                   value="ROBUSTA"
                   className="peer hidden"
                   {...register("coffeeType")}
+                  data-testid="coffee-type-robusta-input"
                 />
                 <label
                   htmlFor="coffee-robusta"
                   className="block flex-[1] rounded-[0.5rem] border-[1px] border-[#2D2D2D] p-[0.5rem] text-center text-[#838382] transition peer-checked:border-[#FFFFFF] peer-checked:text-[#FFFFFF] "
+                  data-testid="coffee-type-robusta-label"
                 >
                   Robusta
                 </label>
@@ -119,6 +125,7 @@ export const CreateCoffee = ({
             fieldName="imageUrl"
             register={register}
             error={errors.imageUrl?.message}
+            data-testid="coffee-image-url-input"
           />
           <TextFormInput
             label="Description"
@@ -127,6 +134,7 @@ export const CreateCoffee = ({
             fieldName="description"
             register={register}
             error={errors.description?.message}
+            data-testid="coffee-description-input"
           />
         </div>
 
@@ -135,10 +143,15 @@ export const CreateCoffee = ({
             type="button"
             variant="secondary"
             onClick={handleClickDiscard}
+            data-testid="coffee-create-form-discard"
           >
             Discard
           </Button>
-          <Button type="submit" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            data-testid="confirm-coffee-creation"
+          >
             {isSubmitting ? "Submitting..." : "Confirm"}
           </Button>
         </div>

@@ -8,6 +8,7 @@ export const TextFormInput = ({
   register,
   fieldName,
   error,
+  "data-testid": dataTestId,
 }: {
   label: string;
   id: string;
@@ -15,6 +16,7 @@ export const TextFormInput = ({
   register: UseFormRegister<CreateCoffeeFormInput>;
   fieldName: keyof CreateCoffeeFormInput;
   error?: string;
+  "data-testid"?: string;
 }) => {
   return (
     <div>
@@ -30,6 +32,7 @@ export const TextFormInput = ({
         placeholder={placeholder}
         {...register(fieldName)}
         className="block w-full rounded-[0.5rem] border-[0.0625rem] border-[#838382] bg-[#2D2D2D] p-[0.5rem] text-[0.875rem] placeholder:text-[#838382]"
+        data-testid={dataTestId}
       />
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
