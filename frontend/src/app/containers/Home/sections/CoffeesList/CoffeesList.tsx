@@ -28,6 +28,8 @@ export const CoffeesList = ({
                 selectedType === CoffeeFilters.ALL,
             })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ALL)}
+            role="button"
+            aria-selected={selectedType === CoffeeFilters.ALL}
           >
             All
           </button>
@@ -37,6 +39,8 @@ export const CoffeesList = ({
                 selectedType === CoffeeFilters.ROBUSTA,
             })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ROBUSTA)}
+            role="button"
+            aria-selected={selectedType === CoffeeFilters.ROBUSTA}
           >
             Robusta
           </button>
@@ -46,6 +50,8 @@ export const CoffeesList = ({
                 selectedType === CoffeeFilters.ARABICA,
             })}
             onClick={() => handleClickFilterByType(CoffeeFilters.ARABICA)}
+            role="button"
+            aria-selected={selectedType === CoffeeFilters.ARABICA}
           >
             Arabica
           </button>

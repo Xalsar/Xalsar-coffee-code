@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { CoffeeType } from "@/app/types/CoffeeType.type";
+import { CoffeeTypePill } from "./CoffeeTypePill";
 
 export const CoffeeItem = ({
   name,
@@ -14,14 +15,11 @@ export const CoffeeItem = ({
   price: number;
 }) => {
   return (
-    <div className="relative min-h-[31.25rem] w-full rounded-[0.37rem] bg-[#191919] px-[3.12rem] py-[2.37rem] text-center text-white shadow-md md:max-w-[24.37rem]">
-      <div
-        className={`absolute left-[1.5rem] top-[1.5rem] rounded-[2.56rem] px-[0.75rem] py-[0.5rem] ${
-          type === CoffeeType.ARABICA ? "bg-[#77A9B0]" : "bg-[#C69A6D]"
-        }`}
-      >
-        {type === CoffeeType.ARABICA ? "Arabica" : "Robusta"}
-      </div>
+    <div
+      className="relative min-h-[31.25rem] w-full rounded-[0.37rem] bg-[#191919] px-[3.12rem] py-[2.37rem] text-center text-white shadow-md md:max-w-[24.37rem]"
+      data-testid="coffee-item"
+    >
+      <CoffeeTypePill type={type} />
       <Image
         src="/coffee.png"
         alt="Coffee"
