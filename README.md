@@ -14,7 +14,7 @@ Create the **.env** files for each project. You can duplicate the **.example.env
 In the **backend** run:
 
 - `pnpm install`
-- `docker compose up` (\# Keep this running)
+- `prisma run start:db`
 - `pnpm build`
 - `pnpm start` (\# Keep this running)
 - `pnpm db:seed`
