@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { cleanup, renderHook, act, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { cleanup, renderHook, act } from "@testing-library/react";
 import { SWRConfig } from "swr";
 import axios from "axios";
 import toast from "react-hot-toast";
