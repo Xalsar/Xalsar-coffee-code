@@ -1,4 +1,4 @@
-import { Coffee } from "@/app/types/Coffee.type";
+import type { Coffee } from "@/app/types/Coffee.type";
 
 import useSWR from "swr";
 

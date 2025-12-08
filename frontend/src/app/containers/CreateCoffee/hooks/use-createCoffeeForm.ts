@@ -1,10 +1,10 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useSWRMutation from "swr/mutation";
 import axios from "axios";
 import toast from "react-hot-toast";
 import {
-  CreateCoffeeFormInput,
+  type CreateCoffeeFormInput,
   CreateCoffeeSchema,
 } from "../schemas/CreateCoffeeSchema";
 

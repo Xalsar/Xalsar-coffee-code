@@ -1,5 +1,5 @@
-import { UseFormRegister } from "react-hook-form";
-import { CreateCoffeeFormInput } from "../schemas/CreateCoffeeSchema";
+import type { UseFormRegister } from "react-hook-form";
+import type { CreateCoffeeFormInput } from "../schemas/CreateCoffeeSchema";
 
 export const TextFormInput = ({
   label,

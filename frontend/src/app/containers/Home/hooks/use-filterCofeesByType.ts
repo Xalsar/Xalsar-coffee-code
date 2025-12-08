@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Coffee } from "@/app/types/Coffee.type";
+import type { Coffee } from "@/app/types/Coffee.type";
 
 import { CoffeeFilters } from "@/app/types/CoffeeFilters.type";
 
@@ -10,7 +10,7 @@ export const useFilterCoffeesByType = ({
   coffeesList: Coffee[];
 }) => {
   const [selectedType, setSelectedType] = useState<CoffeeFilters>(
-    CoffeeFilters.ALL
+    CoffeeFilters.ALL,
   );
 
   const handleClickFilterByType = (type: CoffeeFilters) => {
