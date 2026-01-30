@@ -26,10 +26,11 @@ This is a **fully responsive web application** built with a modern technology st
 Run these commands sequentially:
 
 - `pnpm install`
+- `docker compose up`
 - `pnpm prisma migrate dev`
+- `pnpm db:seed` (To populate the database with initial data.)
 - `pnpm build`
 - `pnpm start` (Keep this process running for the backend server.)
-- `pnpm db:seed` (To populate the database with initial data.)
 
 ### 🌐 Frontend Setup (`frontend` directory)
 
